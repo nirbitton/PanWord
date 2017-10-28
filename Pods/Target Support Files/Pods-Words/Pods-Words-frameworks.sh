@@ -82,3 +82,12 @@ strip_invalid_archs() {
   fi
 }
 
+
+if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/TransitionAnimation/TransitionAnimation.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/TransitionTreasury/TransitionTreasury.framework"
+fi
+if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/TransitionAnimation/TransitionAnimation.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/TransitionTreasury/TransitionTreasury.framework"
+fi

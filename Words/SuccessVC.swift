@@ -7,13 +7,34 @@
 //
 
 import UIKit
+import TransitionTreasury
+import TransitionAnimation
 
-class SuccessVC: UIViewController {
+class SuccessVC: UIViewController, NavgationTransitionable {
+    
+    var tr_pushTransition: TRNavgationTransitionDelegate?
 
+    @IBOutlet weak var firstWord: UILabel!
+    @IBOutlet weak var secondWord: UILabel!
+    @IBOutlet weak var emoji: UILabel!
+    
+    var levelSelectedData:LevelSelectData?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        firstWord.text = levelSelectedData?.levelName
+        emoji.text = levelSelectedData?.icon
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        delay(0.8) {
+            _ = self.navigationController?.tr_popViewController()
+        }
     }
 
     override func didReceiveMemoryWarning() {

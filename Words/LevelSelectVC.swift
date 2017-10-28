@@ -10,85 +10,147 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
-class LevelSelectVC: UICollectionViewController {
-
+class LevelSelectVC: UIViewController, UICollectionViewDataSource {
+    
+    var verticalSpacing  = 15
+    var horizontalSpacing = 10
+    var levelsArr:[LevelSelectData] = []
+    var wordsArr = [[String]]()
+    
+    @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
+        
         // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
+//        self.collectionView.register(LevelSelectCell.s, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView!.backgroundColor = UIColor(red:0.99, green:0.99, blue:0.99, alpha:1.00)
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        initWords()
+        initLevels()
+        
+        collectionView.reloadData()
     }
-    */
+    
+    func initLevels() {
+        levelsArr.removeAll()
+        let savedLevel = DBManager.getSavedLevel()
+        let savedWord = DBManager.getSavedWord()
+        if savedLevel > 0 {
+            levelsArr.append(LevelSelectData(icon: "🐮", levelName: "חיות", nunOfWords: String(wordsArr[0].count) + "/" + String(wordsArr[0].count)))
+        }
+        else if savedLevel == 0 {
+            levelsArr.append(LevelSelectData(icon: "🐮", levelName: "חיות", nunOfWords: String(savedWord) + "/" + String(wordsArr[0].count)))
+        }
+        else {
+            levelsArr.append(LevelSelectData(icon: "🐮", levelName: "חיות", nunOfWords: "0/" + String(wordsArr[0].count)))
+        }
+        
+        if savedLevel > 1 {
+            levelsArr.append(LevelSelectData(icon: "👶", levelName: "שמות", nunOfWords: String(wordsArr[1].count) + "/" + String(wordsArr[1].count)))
+        }
+        else if savedLevel == 1 {
+            levelsArr.append(LevelSelectData(icon: "👶", levelName: "שמות", nunOfWords: String(savedWord) + "/" + String(wordsArr[1].count)))
+        }
+        else {
+            levelsArr.append(LevelSelectData(icon: "👶", levelName: "שמות", nunOfWords: "0/" + String(wordsArr[1].count)))
+        }
+        
+        if savedLevel > 2 {
+            levelsArr.append(LevelSelectData(icon: "🍲", levelName: "מאכלים", nunOfWords: String(wordsArr[2].count) + "/" + String(wordsArr[2].count)))
+        }
+        else if savedLevel == 2{
+            levelsArr.append(LevelSelectData(icon: "🍲", levelName: "מאכלים", nunOfWords: String(savedWord) + "/" + String(wordsArr[2].count)))
+        }
+        else {
+            levelsArr.append(LevelSelectData(icon: "🍲", levelName: "מאכלים", nunOfWords: "0/" + String(wordsArr[2].count)))
+        }
+        
+        levelsArr.append(LevelSelectData(icon: "👁️", levelName: "גוף האדם", nunOfWords: "0/10"))
+        levelsArr.append(LevelSelectData(icon: "🗺️", levelName: "מדינות", nunOfWords: "0/10"))
+        levelsArr.append(LevelSelectData(icon: "🎬", levelName: "סרטים", nunOfWords: "0/10"))
+        levelsArr.append(LevelSelectData(icon: "📖", levelName: "תנ״ך", nunOfWords: "0/10"))
+        levelsArr.append(LevelSelectData(icon: "🎼", levelName: "מוזיקה", nunOfWords: "0/10"))
+    }
+    
+    func initWords() {
+        wordsArr.removeAll()
+        let animals = ["אריה","תנין","נמלה","זבוב","יתוש","לטאה","עכבר","חתול","שועל","חמור","פרפר"]
+        let names = ["ימית","לביא","אביה","דפנה","איתן","מאיר","בארי","יוסף","ברוך","אסתר","יקיר","הילה","תומר","רונן","בתיה","דרור","כרמל","ירדן","מרים","אמיר","שרון","מיקי","יאיר"]
+        let food = ["פיצה","במבה","ביצה","פסטה","חציל","גמבה","פיתה","ציפס","תפוח","חלבה","טוסט","מעדן","עוגה","כרוב"]
+        wordsArr.append(animals)
+        wordsArr.append(names)
+        wordsArr.append(food)
+    }
 
     // MARK: UICollectionViewDataSource
 
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        return levelsArr.count
     }
 
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? LevelSelectCell
+        
+        let levelSD:LevelSelectData = levelsArr[indexPath.row]
+        cell?.icon.text = levelSD.icon
+        cell?.levelName.text = levelSD.levelName
+        cell?.numOfWords.text = levelSD.numberOfWords
+        
+        cell?.isUserInteractionEnabled = false
+        cell?.icon.alpha = 0.5
+        cell?.levelName.alpha = 0.5
+        cell?.numOfWords.alpha = 0.5
+        cell?.lock.isHidden = false
+        
+        if indexPath.row == 0 || (DBManager.getSavedLevel() >= indexPath.row && indexPath.row < 4) {
+            cell?.isUserInteractionEnabled = true
+            cell?.lock.isHidden = true
+            
+            cell?.icon.alpha = 1.0
+            cell?.levelName.alpha = 1.0
+            cell?.numOfWords.alpha = 1.0
+        }
+        
         // Configure the cell
+        cell?.layer.cornerRadius = 5
+        cell?.layer.borderWidth = 1.0
+        cell?.layer.borderColor = UIColor(red:0.94, green:0.94, blue:0.94, alpha:1.00).cgColor
+        cell?.backgroundColor = UIColor.white
     
-        return cell
+        return cell!
     }
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "detail")
+        {
+            let vcDest = segue.destination as! WordSelectVC
+            let cell = sender as! UICollectionViewCell
+            let indexPath = collectionView?.indexPath(for: cell)
+            vcDest.levelSelectedData = levelsArr
+            vcDest.selectedLevel = indexPath?.row
+            vcDest.wordsArr = self.wordsArr
+        }
     }
-    */
 
+}
+
+extension LevelSelectVC: UICollectionViewDelegateFlowLayout
+{
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize
+    {
+        return CGSize(width: collectionView.frame.width - CGFloat(horizontalSpacing)*2, height: 88 - CGFloat(horizontalSpacing)*2)
+    }
+    
 }

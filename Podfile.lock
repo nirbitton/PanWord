@@ -1,3 +1,19 @@
-PODFILE CHECKSUM: 4f9e7654f6cca99115b0b1776274c0ac386cbbfe
+PODS:
+  - Google-Mobile-Ads-SDK (7.25.0)
+  - TransitionAnimation (4.0.0):
+    - TransitionTreasury (~> 4.0)
+  - TransitionTreasury (4.0.0)
+
+DEPENDENCIES:
+  - Google-Mobile-Ads-SDK
+  - TransitionAnimation (~> 4.0.0)
+  - TransitionTreasury (~> 4.0.0)
+
+SPEC CHECKSUMS:
+  Google-Mobile-Ads-SDK: 113804f266381a30f982ad3c18063d4e0155414f
+  TransitionAnimation: c397b9ca41ab593b35b1e8f8673df17bae0db20a
+  TransitionTreasury: dcf3fe6e5c740525d9e7d4544af45e6fbfd71c88
+
+PODFILE CHECKSUM: f5cf9c0461dddfeaae686ae12f797e322357fa49
 
 COCOAPODS: 1.1.1

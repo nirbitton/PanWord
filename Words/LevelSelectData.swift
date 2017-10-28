@@ -9,5 +9,13 @@
 import UIKit
 
 class LevelSelectData: NSObject {
-
+    var icon:String?
+    var levelName:String?
+    var numberOfWords:String?
+    
+    init(icon:String, levelName:String, nunOfWords:String) {
+        self.icon = icon
+        self.levelName = levelName
+        self.numberOfWords = nunOfWords
+    }
 }

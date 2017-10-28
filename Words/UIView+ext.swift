@@ -8,6 +8,11 @@
 
 import UIKit
 
-class UIView_ext: NSObject {
-
+extension UIView {
+    
+    func setRound1()
+    {
+        self.layer.cornerRadius = 8
+        self.clipsToBounds = true
+    }
 }

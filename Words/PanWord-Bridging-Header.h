@@ -9,5 +9,4 @@
 #ifndef PanWord_Bridging_Header_h
 #define PanWord_Bridging_Header_h
 
-
 #endif /* PanWord_Bridging_Header_h */

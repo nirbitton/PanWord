@@ -10,4 +10,14 @@ import UIKit
 
 class LevelSelectCell: UICollectionViewCell {
     
+    @IBOutlet weak var numOfWords: UILabel!
+    @IBOutlet weak var levelName: UILabel!
+    @IBOutlet weak var icon: UILabel!
+    @IBOutlet weak var lock: UIImageView!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+    
 }

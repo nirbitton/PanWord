@@ -10,4 +10,7 @@ import UIKit
 
 class WordSelectCell: UICollectionViewCell {
     
+    @IBOutlet weak var icon: UILabel!
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var lock: UIImageView!
 }

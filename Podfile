@@ -7,7 +7,11 @@ target 'Words' do
   use_frameworks!
 
   # Pods for Words
-
+  
+  pod 'TransitionTreasury', '~> 4.0.0'
+  pod 'TransitionAnimation', '~> 4.0.0'
+  pod 'Google-Mobile-Ads-SDK' 
+  
   target 'WordsTests' do
     inherit! :search_paths
     # Pods for testing

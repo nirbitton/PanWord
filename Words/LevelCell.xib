@@ -1,16 +1,65 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </view>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="sLE-Wi-iZU" customClass="LevelSelectCell" customModule="Words" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="512" height="88"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="512" height="88"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🐮" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KQY-xM-2t8">
+                        <rect key="frame" x="35" y="23" width="45" height="43"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="43" id="bHS-Po-FOs"/>
+                            <constraint firstAttribute="width" constant="45" id="jaw-0g-4Xe"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="חיות" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6VT-wR-Xsq">
+                        <rect key="frame" x="97" y="24" width="104" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="104" id="1Af-XP-Kkc"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKH-u9-jgk">
+                        <rect key="frame" x="98" y="44" width="31" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.79215686269999996" green="0.80392156859999997" blue="0.83529411760000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="KQY-xM-2t8" firstAttribute="top" secondItem="6VT-wR-Xsq" secondAttribute="top" constant="-1" id="C2v-Wi-zIV"/>
+                <constraint firstItem="KQY-xM-2t8" firstAttribute="leading" secondItem="sLE-Wi-iZU" secondAttribute="leading" constant="35" id="LVu-bJ-u0v"/>
+                <constraint firstItem="QKH-u9-jgk" firstAttribute="leading" secondItem="KQY-xM-2t8" secondAttribute="trailing" constant="18" id="Xk6-nV-Bh9"/>
+                <constraint firstItem="QKH-u9-jgk" firstAttribute="centerY" secondItem="KQY-xM-2t8" secondAttribute="centerY" constant="8.5" id="YpW-xp-7U6"/>
+                <constraint firstItem="6VT-wR-Xsq" firstAttribute="leading" secondItem="KQY-xM-2t8" secondAttribute="trailing" constant="17" id="aCL-RV-jbh"/>
+                <constraint firstItem="KQY-xM-2t8" firstAttribute="centerY" secondItem="sLE-Wi-iZU" secondAttribute="centerY" id="wwq-K1-gBp"/>
+            </constraints>
+            <size key="customSize" width="512" height="50"/>
+            <connections>
+                <outlet property="icon" destination="KQY-xM-2t8" id="K5t-Qr-jlg"/>
+                <outlet property="levelName" destination="6VT-wR-Xsq" id="Wft-dy-aRr"/>
+                <outlet property="numOfWords" destination="QKH-u9-jgk" id="YNE-i3-0as"/>
+            </connections>
+            <point key="canvasLocation" x="0.0" y="-309"/>
+        </collectionViewCell>
     </objects>
 </document>
