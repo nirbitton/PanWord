@@ -35,4 +35,17 @@ extension UIButton {
         self.layer.mask = maskLayer
         self.clipsToBounds = true
     }
+    
+    func onTapBounce()
+    {
+        UIView.animate(withDuration: 0.1, animations: { [weak self] in
+            self?.layer.transform = CATransform3DMakeScale(1.1, 1.1, 1.0)
+            
+            }, completion: { [weak self] finished in
+                
+                UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.3, initialSpringVelocity: 1.0, options: UIViewAnimationOptions(), animations: {
+                    self?.layer.transform = CATransform3DIdentity
+                }, completion: nil)
+        })
+    }
 }

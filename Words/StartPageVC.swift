@@ -59,6 +59,12 @@ class StartPageVC: UIViewController, GADRewardBasedVideoAdDelegate {
         if GADRewardBasedVideoAd.sharedInstance().isReady == true {
             GADRewardBasedVideoAd.sharedInstance().present(fromRootViewController: self)
         }
+        else {
+            rewardBasedVideo?.load(request!, withAdUnitID: "ca-app-pub-3940256099942544/1712485313")
+            
+            // Use in production
+            //GADRewardBasedVideoAd.sharedInstance().load(GADRequest(), withAdUnitID: DBManager.ADMOB_AD_UNIT_ID)
+        }
     }
 
     override func didReceiveMemoryWarning() {

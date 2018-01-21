@@ -25,6 +25,11 @@ class WordSelectVC: UIViewController, UICollectionViewDataSource {
         super.viewDidLoad()
 
         self.collectionView!.backgroundColor = UIColor(red:0.99, green:0.99, blue:0.99, alpha:1.00)
+        
+        let levelSelectData:LevelSelectData = self.levelSelectedData[self.selectedLevel!]
+        self.navigationItem.title = levelSelectData.icon! + " " + levelSelectData.levelName!
+        
+        self.navigationController?.navigationBar.isTranslucent = true
     }
 
     override func didReceiveMemoryWarning() {

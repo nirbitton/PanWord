@@ -17,4 +17,14 @@ extension UILabel {
         self.layer.borderWidth = 1
         self.layer.borderColor = UIColor.lightGray().cgColor
     }
+    
+    func animate(time:TimeInterval)
+    {
+        self.transform = CGAffineTransform(scaleX: 4, y: 4)
+        UIView.animate(withDuration: time, animations: {() -> Void in
+            self.transform = CGAffineTransform.identity
+            self.textColor = UIColor.orange
+        }, completion: {(_ finished: Bool) -> Void in
+        })
+    }
 }

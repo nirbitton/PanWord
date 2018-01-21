@@ -10,6 +10,7 @@
 		0224998ECAAF8128C1FB3BD8 /* Pods_WordsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 076CAAB7D5D5435686A91EB5 /* Pods_WordsUITests.framework */; };
 		0E09AD44B5D5357C8FFC367D /* Pods_WordsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA6983F87A22C553C5330E0 /* Pods_WordsTests.framework */; };
 		9EFD3C5F4675FF5F49F46C17 /* Pods_Words.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B85D8751B10637DF1F450E0 /* Pods_Words.framework */; };
+		EA33EBBA200BF0D70047DA36 /* LetterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA33EBB9200BF0D70047DA36 /* LetterCell.swift */; };
 		EA3BC6191DC9413F00821511 /* UIButton+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3BC6181DC9413F00821511 /* UIButton+ext.swift */; };
 		EA3BC61B1DC9455D00821511 /* UILabel+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3BC61A1DC9455D00821511 /* UILabel+ext.swift */; };
 		EAAB8C801F90A267001D74E8 /* UIColorHexExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAB8C7F1F90A266001D74E8 /* UIColorHexExtension.swift */; };
@@ -60,6 +61,7 @@
 		C6B689D9F630E516587D39D4 /* Pods-Words.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Words.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Words/Pods-Words.debug.xcconfig"; sourceTree = "<group>"; };
 		CF1FB529D0594F7322710C67 /* Pods-WordsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WordsTests/Pods-WordsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DFA6983F87A22C553C5330E0 /* Pods_WordsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WordsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA33EBB9200BF0D70047DA36 /* LetterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterCell.swift; sourceTree = "<group>"; };
 		EA3BC6181DC9413F00821511 /* UIButton+ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+ext.swift"; sourceTree = "<group>"; };
 		EA3BC61A1DC9455D00821511 /* UILabel+ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+ext.swift"; sourceTree = "<group>"; };
 		EA892D731FA1FFCB0037C801 /* Fingertips.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fingertips.framework; path = "../../Library/Developer/Xcode/DerivedData/Words-hafnunintkaodedhlvmpysvcdnjq/Build/Products/Debug-iphoneos/Fingertips/Fingertips.framework"; sourceTree = "<group>"; };
@@ -79,7 +81,7 @@
 		EAC817CE1DC2A72800721842 /* WordsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsUITests.swift; sourceTree = "<group>"; };
 		EAC817D01DC2A72800721842 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EAC817DC1DC53F7B00721842 /* UIColor+ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+ext.swift"; sourceTree = "<group>"; };
-		EAF7EE771F93EA880025F020 /* PanWord-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PanWord-Bridging-Header.h"; sourceTree = "<group>"; };
+		EAF5735C20152ED7001D0170 /* Words_Bridging_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Words_Bridging_Header.h; sourceTree = "<group>"; };
 		EAF7EEDD1F953E070025F020 /* SuccessVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuccessVC.swift; sourceTree = "<group>"; };
 		EAF7EEE11F9549B10025F020 /* Delay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Delay.swift; sourceTree = "<group>"; };
 		EAF7EEE91F97E2D20025F020 /* LevelSelectVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelSelectVC.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 		EAC817A21DC2A72800721842 = {
 			isa = PBXGroup;
 			children = (
+				EAF5735C20152ED7001D0170 /* Words_Bridging_Header.h */,
 				EAC817AD1DC2A72800721842 /* Words */,
 				EAC817C21DC2A72800721842 /* WordsTests */,
 				EAC817CD1DC2A72800721842 /* WordsUITests */,
@@ -165,9 +168,9 @@
 				EAC817B71DC2A72800721842 /* LaunchScreen.storyboard */,
 				EAC817AE1DC2A72800721842 /* AppDelegate.swift */,
 				EAC817BA1DC2A72800721842 /* Info.plist */,
-				EAF7EE771F93EA880025F020 /* PanWord-Bridging-Header.h */,
 				EAF7EEFD1F9E53940025F020 /* StartPageVC.swift */,
 				EAF7EF011F9E7B3C0025F020 /* DBManager.swift */,
+				EA33EBB9200BF0D70047DA36 /* LetterCell.swift */,
 			);
 			path = Words;
 			sourceTree = "<group>";
@@ -522,6 +525,7 @@
 				EA3BC61B1DC9455D00821511 /* UILabel+ext.swift in Sources */,
 				EAAB8C801F90A267001D74E8 /* UIColorHexExtension.swift in Sources */,
 				EAF7EEF61F99452C0025F020 /* WordSelectVC.swift in Sources */,
+				EA33EBBA200BF0D70047DA36 /* LetterCell.swift in Sources */,
 				EAF7EF001F9E547A0025F020 /* UIView+ext.swift in Sources */,
 				EAF7EEE21F9549B10025F020 /* Delay.swift in Sources */,
 				EAF7EF021F9E7B3C0025F020 /* DBManager.swift in Sources */,
@@ -689,8 +693,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nir.words.game;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/nbitton/Documents/Words/Words/PanWord-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_OBJC_BRIDGING_HEADER = /Users/nbitton/Development/Words/Words_Bridging_Header.h;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -705,8 +709,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nir.words.game;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/nbitton/Documents/Words/Words/PanWord-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_OBJC_BRIDGING_HEADER = /Users/nbitton/Development/Words/Words_Bridging_Header.h;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

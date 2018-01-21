@@ -62,10 +62,19 @@ class ViewController: UIViewController, UICollectionViewDataSource, GADRewardBas
         self.navigationController?.navigationBar.isTranslucent = true
         
         let doubleTapGesture: UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(ViewController.handleTap(_:)))
-        doubleTapGesture.minimumPressDuration = 0.1
+        doubleTapGesture.minimumPressDuration = 0.01
         self.collectionView.addGestureRecognizer(doubleTapGesture)
         
         currentsArr = wordsArr[selectedLevel!]
+        let levelSelectData:LevelSelectData = self.levelSelectedData[self.selectedLevel!]
+        self.navigationItem.title = levelSelectData.icon! + " " + levelSelectData.levelName!
+        
+        print(UIGestureRecognizerState.began.rawValue)
+        print(UIGestureRecognizerState.changed.rawValue)
+        print(UIGestureRecognizerState.ended.rawValue)
+        print(UIGestureRecognizerState.cancelled.rawValue)
+        print(UIGestureRecognizerState.failed.rawValue)
+        print(UIGestureRecognizerState.possible.rawValue)
         
     }
     
@@ -86,33 +95,32 @@ class ViewController: UIViewController, UICollectionViewDataSource, GADRewardBas
     {
         let state: UIGestureRecognizerState = sender.state
         let location:CGPoint = sender.location(in: self.collectionView)
-        if let indexPath: NSIndexPath = self.collectionView.indexPathForItem(at: location) as NSIndexPath?
+        switch state
         {
-            switch state
+        case .began:
+            break
+        case .changed:
+            if let indexPath: NSIndexPath = self.collectionView.indexPathForItem(at: location) as NSIndexPath?
             {
-            case UIGestureRecognizerState.began:
-                
-                break
-            case UIGestureRecognizerState.changed:
                 if let cell = self.collectionView.cellForItem(at: indexPath as IndexPath) as? LetterCell
                 {
                     self.handleCellSelection(cell: cell)
                 }
-                break
-                case UIGestureRecognizerState.ended:
-                    success()
-                    
-                    clearCells()
-                break
-            default:
-                break
             }
+            break
+        case .ended:
+            success()
+            clearCells()
+            break
+        default:
+            break
         }
+        
     }
     
     func success()
     {
-        if selectedLetters.text == currentsArr[selectedWord!]
+        if selectedLetters.text == currentsArr[selectedWord!] || !(letter1.text?.isEmpty)!
         {
             //success
             var arr:[Character] = []
@@ -125,21 +133,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, GADRewardBas
             letter2.text = arr[2].description
             letter1.text = arr[3].description
             
-            UIView.transition(with: letter4, duration: 0.3, options: .transitionCrossDissolve, animations: {() -> Void in
-                self.letter4.textColor = UIColor.orange
-            }) { _ in }
-            
-            UIView.transition(with: letter3, duration: 0.5, options: .transitionCrossDissolve, animations: {() -> Void in
-                self.letter3.textColor = UIColor.orange
-            }) { _ in }
-            
-            UIView.transition(with: letter2, duration: 0.7, options: .transitionCrossDissolve, animations: {() -> Void in
-                self.letter2.textColor = UIColor.orange
-            }) { _ in }
-            
-            UIView.transition(with: letter1, duration: 0.9, options: .transitionCrossDissolve, animations: {() -> Void in
-                self.letter1.textColor = UIColor.orange
-            }) { _ in }
+            letter4.animate(time: 0.3)
+            letter3.animate(time: 0.5)
+            letter2.animate(time: 0.7)
+            letter1.animate(time: 0.9)
             
             delay(0.5) {
                 let successVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SuccessVC") as! SuccessVC
@@ -155,7 +152,11 @@ class ViewController: UIViewController, UICollectionViewDataSource, GADRewardBas
     }
     
     func nextPage() {
-        selectedWord = selectedWord!+1
+        selectedWord = selectedWord! + 1
+        if DBManager.getSavedLevel() == selectedLevel, DBManager.getSavedWord() < selectedWord! {
+            DBManager.saveWord(word: selectedWord!)
+        }
+        
         collectionView.reloadData()
         
         letter4.text = ""
@@ -165,18 +166,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, GADRewardBas
         
         clearCells()
         
-        DBManager.saveWord(word: selectedWord!)
     }
     
     @IBAction func reffreshAction(_ sender: Any) {
-        selectedWord = selectedWord!+1
-        collectionView.reloadData()
-        
-        letter4.text = ""
-        letter3.text = ""
-        letter2.text = ""
-        letter1.text = ""
-        
         clearCells()
     }
     func handleCellSelection(cell:LetterCell)
@@ -289,6 +281,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, GADRewardBas
         if GADRewardBasedVideoAd.sharedInstance().isReady == true {
             GADRewardBasedVideoAd.sharedInstance().present(fromRootViewController: self)
         }
+        else {
+            rewardBasedVideo?.load(request!, withAdUnitID: "ca-app-pub-3940256099942544/1712485313")
+            
+            // Use in production
+            //GADRewardBasedVideoAd.sharedInstance().load(GADRequest(), withAdUnitID: DBManager.ADMOB_AD_UNIT_ID)
+        }
     }
     
     @IBAction func hintAction(_ sender: AnyObject)
@@ -336,13 +334,13 @@ class ViewController: UIViewController, UICollectionViewDataSource, GADRewardBas
     {
         let state: UIGestureRecognizerState = gesture.state
         let location:CGPoint = gesture.location(in: self.collectionView)
-        if let indexPath: NSIndexPath = self.collectionView.indexPathForItem(at: location) as NSIndexPath?
+        switch (state)
         {
-            switch (state)
+        case UIGestureRecognizerState.began:
+            break
+        case .possible:
+            if let indexPath: NSIndexPath = self.collectionView.indexPathForItem(at: location) as NSIndexPath?
             {
-            case UIGestureRecognizerState.began:
-                break
-            case .possible:
                 if let cell = self.collectionView.cellForItem(at: indexPath as IndexPath) as? LetterCell
                 {
                     if let label = cell.letter
@@ -350,24 +348,27 @@ class ViewController: UIViewController, UICollectionViewDataSource, GADRewardBas
                         self.handleCellSelection(cell: cell)
                     }
                 }
-                break
-            case UIGestureRecognizerState.changed:
-                if let cell = self.collectionView.cellForItem(at: indexPath as IndexPath) as? LetterCell
-                {
-                    if let label = cell.letter
-                    {
-                        self.handleCellSelection(cell: cell)
-                    }
-                }
-                break
-            case UIGestureRecognizerState.ended:
-                success()
-                
-                clearCells()
-                break
-            default:
-                break
             }
+            break
+        case UIGestureRecognizerState.changed:
+            if let indexPath: NSIndexPath = self.collectionView.indexPathForItem(at: location) as NSIndexPath?
+            {
+                if let cell = self.collectionView.cellForItem(at: indexPath as IndexPath) as? LetterCell
+                {
+                    if let label = cell.letter
+                    {
+                        self.handleCellSelection(cell: cell)
+                    }
+                }
+            }
+            break
+        case UIGestureRecognizerState.ended:
+            success()
+            
+            clearCells()
+            break
+        default:
+            break
         }
     }
     
@@ -405,24 +406,11 @@ extension ViewController: UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize
-    {        
-        return CGSize(width: 155, height: 155)
-    }
-}
-
-class LetterCell: UICollectionViewCell
-{
-    @IBOutlet weak var letter: UILabel!
-    
-    var strText = "ב"
-    var IsSelected:Bool = false
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    {
+        if (UIDevice.current.userInterfaceIdiom == .phone && UIScreen.main.bounds.size.height == 667) {
+            return CGSize(width: 155.0, height: 155.0)
+        }
         
-        letter.text = strText
-        
-        self.layer.cornerRadius = 10
-        self.layer.masksToBounds = true
+        return CGSize(width: (self.view.frame.width / 2) - 35, height: (self.view.frame.width / 2) - 35)
     }
 }
