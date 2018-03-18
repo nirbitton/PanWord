@@ -23,7 +23,7 @@ open class FadeTransitionAnimation: NSObject, TRViewControllerAnimatedTransition
     open var interacting: Bool = false
     
     open func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.3
+        return 0.6
     }
 
     public init(status: TransitionStatus = .push) {

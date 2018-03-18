@@ -23,7 +23,8 @@ class LevelSelectVC: UIViewController, UICollectionViewDataSource {
         
         // Register cell classes
 //        self.collectionView.register(LevelSelectCell.s, forCellWithReuseIdentifier: reuseIdentifier)
-        self.collectionView!.backgroundColor = UIColor(red:0.99, green:0.99, blue:0.99, alpha:1.00)
+//        self.collectionView!.backgroundColor = UIColor(red:0.99, green:0.99, blue:0.99, alpha:1.00)
+        self.collectionView!.backgroundColor = UIColor.clear
         
     }
 
@@ -78,7 +79,8 @@ class LevelSelectVC: UIViewController, UICollectionViewDataSource {
         levelsArr.append(LevelSelectData(icon: "🗺️", levelName: "מדינות", nunOfWords: "0/10"))
         levelsArr.append(LevelSelectData(icon: "🎬", levelName: "סרטים", nunOfWords: "0/10"))
         levelsArr.append(LevelSelectData(icon: "📖", levelName: "תנ״ך", nunOfWords: "0/10"))
-        levelsArr.append(LevelSelectData(icon: "🎼", levelName: "מוזיקה", nunOfWords: "0/10"))
+        levelsArr.append(LevelSelectData(icon: "🎶", levelName: "מוזיקה", nunOfWords: "0/10"))
+        levelsArr.append(LevelSelectData(icon: "🎭", levelName: "מקצועות", nunOfWords: "0/10"))
     }
     
     func initWords() {
@@ -125,7 +127,7 @@ class LevelSelectVC: UIViewController, UICollectionViewDataSource {
         cell?.layer.cornerRadius = 5
         cell?.layer.borderWidth = 1.0
         cell?.layer.borderColor = UIColor(red:0.94, green:0.94, blue:0.94, alpha:1.00).cgColor
-        cell?.backgroundColor = UIColor.white
+        cell?.backgroundColor = UIColor.offWhite()
     
         return cell!
     }

@@ -36,7 +36,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, GADRewardBas
     @IBOutlet weak var letter2: UILabel!
     @IBOutlet weak var letter3: UILabel!
     @IBOutlet weak var letter4: UILabel!
-
+    @IBOutlet weak var backGView: UIView!
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -47,16 +48,18 @@ class ViewController: UIViewController, UICollectionViewDataSource, GADRewardBas
         request = GADRequest()
         request?.testDevices = [ kGADSimulatorID, "0dc5f3047bdc32effffee248d68d7ce6" ];
         
-        hintBtn.setRightRound()
+//        hintBtn.setRightRound()
         let str = "רמז" + "(" + String(DBManager.getSavedHint()) + ")!"
         hintBtn.setTitle(str, for: .normal)
-        addHintBtn.setLeftRound()
+//        addHintBtn.setLeftRound()
         reffreshBtn.setRound()
+        hintBtn.setRound(20)
+        reffreshBtn.imageView?.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
         letter1.setRound()
         letter2.setRound()
         letter3.setRound()
         letter4.setRound()
-        
+        backGView.setRound1()
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
@@ -141,7 +144,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, GADRewardBas
             delay(0.5) {
                 let successVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SuccessVC") as! SuccessVC
                 successVC.levelSelectedData = self.levelSelectedData[self.selectedLevel!]
-                self.navigationController?.tr_pushViewController(successVC, method: TRPushTransitionMethod.page)
+                self.navigationController?.tr_pushViewController(successVC, method: TRPushTransitionMethod.fade)
             }
             
             
@@ -177,7 +180,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, GADRewardBas
         {
             selectedTags.append(cell)
             cell.backgroundColor = UIColor.cellDarkBlueColor()
-            cell.letter.textColor = UIColor.orange
+            cell.letter.textColor = UIColor.nRedColor()
             
             selectedLetters.text = selectedLetters.text! + cell.letter.text!
         }
@@ -410,7 +413,9 @@ extension ViewController: UICollectionViewDelegateFlowLayout
         if (UIDevice.current.userInterfaceIdiom == .phone && UIScreen.main.bounds.size.height == 667) {
             return CGSize(width: 155.0, height: 155.0)
         }
-        
-        return CGSize(width: (self.view.frame.width / 2) - 35, height: (self.view.frame.width / 2) - 35)
+
+        return CGSize(width: (self.view.frame.width / 2) - 25, height: (self.view.frame.width / 2) - 25)
     }
+
 }
+

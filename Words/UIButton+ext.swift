@@ -10,9 +10,9 @@ import UIKit
 
 extension UIButton {
     
-    func setRound()
+    func setRound(_ cgFloat:CGFloat = 10)
     {
-        self.layer.cornerRadius = 10
+        self.layer.cornerRadius = cgFloat
         self.clipsToBounds = true
     }
     

@@ -15,23 +15,27 @@ extension UIColor {
 //    }
     
     static func cellDarkBlueColor()-> UIColor {
-        return UIColor(rgba: "#3C4663")
+        return UIColor(rgba: "#BFA8F9")
     }
     
     static func cellColor()-> UIColor {
-        return UIColor(rgba: "#2594EE")
+        return UIColor(rgba: "#d7cdf8")
     }
     
     static func nRedColor()-> UIColor {
-        return UIColor(rgba: "#f2483f")
+        return UIColor(rgba: "#FCB52C")
     }
     
     static func offWhiteColor()  -> UIColor {
-        return UIColor(rgba: "#F4F4F4")
+        return UIColor(rgba: "#4D2EA4")
     }
     
     static func lightGray()  -> UIColor {
         return UIColor(rgba: "#CACDD5")
+    }
+    
+    static func offWhite() -> UIColor {
+        return UIColor(rgba: "#F4F4F4")
     }
     
 }

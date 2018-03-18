@@ -24,7 +24,8 @@ class WordSelectVC: UIViewController, UICollectionViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.collectionView!.backgroundColor = UIColor(red:0.99, green:0.99, blue:0.99, alpha:1.00)
+//        self.collectionView!.backgroundColor = UIColor(red:0.99, green:0.99, blue:0.99, alpha:1.00)
+        self.collectionView!.backgroundColor = UIColor.clear
         
         let levelSelectData:LevelSelectData = self.levelSelectedData[self.selectedLevel!]
         self.navigationItem.title = levelSelectData.icon! + " " + levelSelectData.levelName!
@@ -97,7 +98,7 @@ class WordSelectVC: UIViewController, UICollectionViewDataSource {
         cell.layer.cornerRadius = 5
         cell.layer.borderWidth = 1.0
         cell.layer.borderColor = UIColor(red:0.94, green:0.94, blue:0.94, alpha:1.00).cgColor
-        cell.backgroundColor = UIColor.white
+        cell.backgroundColor = UIColor.offWhite()
         
         return cell
     }
