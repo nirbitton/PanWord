@@ -26,10 +26,13 @@ class StartPageVC: UIViewController, GADRewardBasedVideoAdDelegate {
         
         startBtn.setRound()
         hintsBtn.setRound()
+        hintsBtn.layer.borderWidth = 1.0
+        hintsBtn.layer.borderColor = UIColor.darkPurple().cgColor
         
         letter1.setRound1()
         letter2.setRound1()
         letter3.setRound1()
+        letter3.rotate(angle: 6)
         letter4.setRound1()
         
         if !DBManager.isHintAllreadySet() {

@@ -14,19 +14,19 @@ extension UIColor {
 //        return UIColor(red: 0.59, green: 0.0, blue: 0.5, alpha: 1.0)
 //    }
     
-    static func cellDarkBlueColor()-> UIColor {
+    static func midPurple()-> UIColor {
         return UIColor(rgba: "#BFA8F9")
     }
     
-    static func cellColor()-> UIColor {
+    static func lightPurple()-> UIColor {
         return UIColor(rgba: "#d7cdf8")
     }
     
-    static func nRedColor()-> UIColor {
+    static func nOrangeColor()-> UIColor {
         return UIColor(rgba: "#FCB52C")
     }
     
-    static func offWhiteColor()  -> UIColor {
+    static func darkPurple()  -> UIColor {
         return UIColor(rgba: "#4D2EA4")
     }
     

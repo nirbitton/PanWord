@@ -179,8 +179,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, GADRewardBas
         if !selectedTags.contains(cell)
         {
             selectedTags.append(cell)
-            cell.backgroundColor = UIColor.cellDarkBlueColor()
-            cell.letter.textColor = UIColor.nRedColor()
+            cell.backgroundColor = UIColor.midPurple()
+            cell.letter.textColor = UIColor.nOrangeColor()
             
             selectedLetters.text = selectedLetters.text! + cell.letter.text!
         }
@@ -191,8 +191,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, GADRewardBas
                 if cell.tag == selectedTags[selectedTags.endIndex-2].tag
                 {
                     let lastCell = selectedTags[selectedTags.endIndex-1]
-                    lastCell.backgroundColor = UIColor.cellColor()
-                    lastCell.letter.textColor = UIColor.offWhiteColor()
+                    lastCell.backgroundColor = UIColor.lightPurple()
+                    lastCell.letter.textColor = UIColor.darkPurple()
                     
                     selectedLetters.text!.remove(at:selectedLetters.text!.index(before: selectedLetters.text!.endIndex))
                     selectedTags.remove(at: selectedTags.endIndex-1)
@@ -205,8 +205,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, GADRewardBas
     {
         for cell in selectedTags
         {
-            cell.backgroundColor = UIColor.cellColor()
-            cell.letter.textColor = UIColor.offWhiteColor()
+            cell.backgroundColor = UIColor.lightPurple()
+            cell.letter.textColor = UIColor.darkPurple()
         }
         selectedTags.removeAll()
         selectedLetters.text = ""

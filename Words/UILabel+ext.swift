@@ -16,6 +16,7 @@ extension UILabel {
         self.clipsToBounds = true
         self.layer.borderWidth = 1
         self.layer.borderColor = UIColor.lightGray().cgColor
+        self.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
     }
     
     func animate(time:TimeInterval)
@@ -23,7 +24,7 @@ extension UILabel {
         self.transform = CGAffineTransform(scaleX: 4, y: 4)
         UIView.animate(withDuration: time, animations: {() -> Void in
             self.transform = CGAffineTransform.identity
-            self.textColor = UIColor.orange
+            self.textColor = UIColor.darkPurple()
         }, completion: {(_ finished: Bool) -> Void in
         })
     }

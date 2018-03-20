@@ -26,4 +26,10 @@ extension UIView {
         gradientLayer.locations = location
         layer.addSublayer(gradientLayer)
     }
+    
+    func rotate(angle: CGFloat) {
+        let radians = angle / 180.0 * CGFloat(Double.pi)
+        let rotation = self.transform.rotated(by: radians)
+        self.transform = rotation
+    }
 }
