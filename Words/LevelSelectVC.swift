@@ -118,7 +118,7 @@ class LevelSelectVC: UIViewController, UICollectionViewDataSource {
         if indexPath.row == 0 || (DBManager.getSavedLevel() >= indexPath.row && indexPath.row < 4) {
             cell?.isUserInteractionEnabled = true
             cell?.lock.isHidden = true
-            cell?.layer.borderColor = UIColor.darkPurple().cgColor
+            cell?.layer.borderColor = UIColor.lightGray().cgColor
             
             cell?.icon.alpha = 1.0
             cell?.levelName.alpha = 1.0

@@ -81,7 +81,7 @@ class WordSelectVC: UIViewController, UICollectionViewDataSource {
         if DBManager.getSavedLevel() > selectedLevel! {
             cell.isUserInteractionEnabled = true
             cell.lock.isHidden = true
-            cell.layer.borderColor = UIColor.darkPurple().cgColor
+            cell.layer.borderColor = UIColor.lightGray().cgColor
             
             cell.icon.alpha = 1.0
             cell.title.alpha = 1.0
@@ -90,7 +90,7 @@ class WordSelectVC: UIViewController, UICollectionViewDataSource {
             if DBManager.getSavedWord() >= indexPath.row {
                 cell.isUserInteractionEnabled = true
                 cell.lock.isHidden = true
-                cell.layer.borderColor = UIColor.darkPurple().cgColor
+                cell.layer.borderColor = UIColor.lightGray().cgColor
                 
                 cell.icon.alpha = 1.0
                 cell.title.alpha = 1.0
