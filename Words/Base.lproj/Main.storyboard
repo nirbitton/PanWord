@@ -540,7 +540,11 @@
                                     <constraint firstAttribute="height" constant="66" id="FsS-Cs-Qfc"/>
                                     <constraint firstAttribute="width" constant="58" id="iSp-sC-sY0"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="54"/>
+                                <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="5"/>
+                                <state key="normal" title="+">
+                                    <color key="titleColor" red="0.3021180034" green="0.1789961159" blue="0.64148277040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="addHints:" destination="hoh-WB-5pg" eventType="touchUpInside" id="XiC-SA-PRD"/>
                                 </connections>
