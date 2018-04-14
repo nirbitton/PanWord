@@ -17,8 +17,10 @@ class SuccessVC: UIViewController, NavgationTransitionable {
     @IBOutlet weak var firstWord: UILabel!
     @IBOutlet weak var secondWord: UILabel!
     @IBOutlet weak var emoji: UILabel!
+    @IBOutlet weak var scoreLbl: UILabel!
     
     var levelSelectedData:LevelSelectData?
+    var levelScore:Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +30,24 @@ class SuccessVC: UIViewController, NavgationTransitionable {
     
     override func viewWillAppear(_ animated: Bool) {
         firstWord.text = levelSelectedData?.levelName
+        secondWord.text = getSecondWordByScore()
         emoji.text = levelSelectedData?.icon
+        scoreLbl.text = String(DBManager.getScore())
+    }
+    
+    func getSecondWordByScore() -> String {
+        if levelScore == 6 {
+            return "תוצאה מושלמת!"
+        }
+        else if levelScore == 4 {
+            return "מצויין"
+        }
+        else if levelScore == 2 {
+            return "כל הכבוד"
+        }
+        else {
+            return "יפה"
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {

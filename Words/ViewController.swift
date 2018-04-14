@@ -27,6 +27,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, GADRewardBas
     var rewardBasedVideo: GADRewardBasedVideoAd?
     var request: GADRequest?
     
+    // Show message when user taps on screen without
+    var numberOfTaps:Int?
+    
+    // for score
+    var numberOfTries:Int = 0
+    var isSameTry:Bool = false
+    
+    
     @IBOutlet weak var hintBtn: UIButton!
     @IBOutlet weak var addHintBtn: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -64,6 +72,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, GADRewardBas
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         
+        
         let doubleTapGesture: UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(ViewController.handleTap(_:)))
         doubleTapGesture.minimumPressDuration = 0.01
         self.collectionView.addGestureRecognizer(doubleTapGesture)
@@ -71,13 +80,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, GADRewardBas
         currentsArr = wordsArr[selectedLevel!]
         let levelSelectData:LevelSelectData = self.levelSelectedData[self.selectedLevel!]
         self.navigationItem.title = levelSelectData.icon! + " " + levelSelectData.levelName!
-        
-        print(UIGestureRecognizerState.began.rawValue)
-        print(UIGestureRecognizerState.changed.rawValue)
-        print(UIGestureRecognizerState.ended.rawValue)
-        print(UIGestureRecognizerState.cancelled.rawValue)
-        print(UIGestureRecognizerState.failed.rawValue)
-        print(UIGestureRecognizerState.possible.rawValue)
         
     }
     
@@ -114,11 +116,13 @@ class ViewController: UIViewController, UICollectionViewDataSource, GADRewardBas
         case .ended:
             success()
             clearCells()
+            
+            isSameTry = false
             break
         default:
             break
         }
-        
+        self.handleNumOfTries()
     }
     
     func success()
@@ -142,23 +146,33 @@ class ViewController: UIViewController, UICollectionViewDataSource, GADRewardBas
             letter1.animate(time: 0.9)
             
             delay(0.5) {
-                let successVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SuccessVC") as! SuccessVC
-                successVC.levelSelectedData = self.levelSelectedData[self.selectedLevel!]
-                self.navigationController?.tr_pushViewController(successVC, method: TRPushTransitionMethod.fade)
+                self.nextPage()
             }
             
-            
             delay(0.9) {
-                self.nextPage()
+                self.clearAndSave()
             }
         }
     }
     
     func nextPage() {
+        self.saveData()
+        
+        let successVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SuccessVC") as! SuccessVC
+        successVC.levelSelectedData = self.levelSelectedData[self.selectedLevel!]
+        successVC.levelScore = self.getTotalScore()
+        self.navigationController?.tr_pushViewController(successVC, method: TRPushTransitionMethod.fade)
+    }
+    
+    func saveData() {
         selectedWord = selectedWord! + 1
         if DBManager.getSavedLevel() == selectedLevel, DBManager.getSavedWord() < selectedWord! {
             DBManager.saveWord(word: selectedWord!)
+            DBManager.saveScore(score: self.getTotalScore())
         }
+    }
+    
+    func clearAndSave() {
         
         collectionView.reloadData()
         
@@ -169,6 +183,22 @@ class ViewController: UIViewController, UICollectionViewDataSource, GADRewardBas
         
         clearCells()
         
+        numberOfTries = 0
+    }
+    
+    func getTotalScore() ->Int {
+        if numberOfTries == 1 {
+            return 6
+        }
+        else if numberOfTries == 2 {
+            return 4
+        }
+        else if numberOfTries == 3 {
+            return 2
+        }
+        else {
+            return 1
+        }
     }
     
     @IBAction func reffreshAction(_ sender: Any) {
@@ -330,6 +360,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, GADRewardBas
         let btnHint = "רמז" + "(" + String(DBManager.getSavedHint()) + ")!"
         hintBtn.setTitle(btnHint, for: .normal)
         
+        numberOfTries = numberOfTries + 1
+        
         self.success()
     }
     
@@ -372,6 +404,17 @@ class ViewController: UIViewController, UICollectionViewDataSource, GADRewardBas
             break
         default:
             break
+        }
+        
+        
+    }
+    
+    func handleNumOfTries() {
+        // check number of tries
+        if selectedTags.count > 1 && !isSameTry
+        {
+            numberOfTries = numberOfTries + 1
+            isSameTry = true
         }
     }
     

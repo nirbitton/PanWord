@@ -667,6 +667,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="60" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g3u-aH-aeK">
+                                <rect key="frame" x="161" y="471" width="53" height="48"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                <color key="textColor" red="0.94901960784313721" green="0.71764705882352942" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.3021180034" green="0.1789961159" blue="0.64148277040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -675,15 +681,18 @@
                             <constraint firstItem="pPa-Wi-SqJ" firstAttribute="top" secondItem="eFL-jX-Zri" secondAttribute="bottom" constant="8" symbolic="YES" id="Ma1-bC-7pY"/>
                             <constraint firstItem="eFL-jX-Zri" firstAttribute="centerX" secondItem="1Ir-fD-7nx" secondAttribute="centerX" id="OxA-vh-QJ5"/>
                             <constraint firstItem="eFL-jX-Zri" firstAttribute="leading" secondItem="bYC-b4-aZ7" secondAttribute="leading" id="Vja-iL-MzS"/>
+                            <constraint firstItem="g3u-aH-aeK" firstAttribute="top" secondItem="pPa-Wi-SqJ" secondAttribute="bottom" constant="102" id="a90-Ru-IVQ"/>
                             <constraint firstItem="eFL-jX-Zri" firstAttribute="top" secondItem="bYC-b4-aZ7" secondAttribute="bottom" constant="8" symbolic="YES" id="gza-Ku-Ndr"/>
                             <constraint firstItem="eFL-jX-Zri" firstAttribute="centerY" secondItem="1Ir-fD-7nx" secondAttribute="centerY" id="i2a-tX-dqa"/>
                             <constraint firstItem="eFL-jX-Zri" firstAttribute="leading" secondItem="pPa-Wi-SqJ" secondAttribute="leading" id="nSr-tb-mvj"/>
                             <constraint firstItem="eFL-jX-Zri" firstAttribute="trailing" secondItem="bYC-b4-aZ7" secondAttribute="trailing" id="s8C-1K-S5g"/>
+                            <constraint firstItem="g3u-aH-aeK" firstAttribute="centerX" secondItem="1Ir-fD-7nx" secondAttribute="centerX" id="vZm-MU-ggt"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="emoji" destination="0Bq-ot-I1U" id="Cmr-I7-6wh"/>
                         <outlet property="firstWord" destination="bYC-b4-aZ7" id="YOX-nT-YvU"/>
+                        <outlet property="scoreLbl" destination="g3u-aH-aeK" id="7g0-IP-wsZ"/>
                         <outlet property="secondWord" destination="pPa-Wi-SqJ" id="Gvc-Qd-grh"/>
                     </connections>
                 </viewController>

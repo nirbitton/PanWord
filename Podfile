@@ -10,7 +10,8 @@ target 'Words' do
   
   pod 'TransitionTreasury', '~> 4.0.0'
   pod 'TransitionAnimation', '~> 4.0.0'
-  pod 'Google-Mobile-Ads-SDK' 
+  pod 'Google-Mobile-Ads-SDK'
+  pod 'LTMorphingLabel'
   
   target 'WordsTests' do
     inherit! :search_paths

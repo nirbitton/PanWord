@@ -14,6 +14,7 @@ class DBManager: NSObject {
     static let SAVED_WORD = "SAVED_WORD"
     static let NUM_OF_HINTS = "NUM_OF_HINTS"
     static let HINT_ALLREADY_SET = "HINT_ALLREADY_SET"
+    static let SCORE = "SCORE"
     
     // ad unit name: "A letter hint"
     static let ADMOB_APP_ID = "ca-app-pub-1581642372941489~2561488580"
@@ -51,5 +52,15 @@ class DBManager: NSObject {
     
     static func setBooleanHintAsTrue() {
         UserDefaults().set(true, forKey: HINT_ALLREADY_SET)
+    }
+    
+    static func saveScore(score:Int) {
+        var curr = self.getScore()
+        curr = curr + score
+        UserDefaults().set(curr, forKey: SCORE)
+    }
+    
+    static func getScore() -> Int{
+        return UserDefaults().integer(forKey: SCORE)
     }
 }
