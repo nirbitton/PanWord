@@ -77,15 +77,15 @@ class ViewController: UIViewController, UICollectionViewDataSource, GADRewardBas
         doubleTapGesture.minimumPressDuration = 0.01
         self.collectionView.addGestureRecognizer(doubleTapGesture)
         
-        currentsArr = wordsArr[selectedLevel!]
-        let levelSelectData:LevelSelectData = self.levelSelectedData[self.selectedLevel!]
-        self.navigationItem.title = levelSelectData.icon! + " " + levelSelectData.levelName!
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         rewardBasedVideo?.load(request!, withAdUnitID: "ca-app-pub-3940256099942544/1712485313")
+        
+        currentsArr = wordsArr[selectedLevel!]
+        let levelSelectData:LevelSelectData = self.levelSelectedData[self.selectedLevel!]
+        self.navigationItem.title = levelSelectData.icon! + " " + levelSelectData.levelName!
         
         // Use in production
         //GADRewardBasedVideoAd.sharedInstance().load(GADRequest(), withAdUnitID: DBManager.ADMOB_AD_UNIT_ID)
@@ -150,7 +150,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, GADRewardBas
             }
             
             delay(0.9) {
-                self.clearAndSave()
+                self.clearUI()
             }
         }
     }
@@ -166,13 +166,26 @@ class ViewController: UIViewController, UICollectionViewDataSource, GADRewardBas
     
     func saveData() {
         selectedWord = selectedWord! + 1
-        if DBManager.getSavedLevel() == selectedLevel, DBManager.getSavedWord() < selectedWord! {
+        
+        // new level
+        if selectedWord! == currentsArr.count {
+            selectedLevel = selectedLevel!+1
+            currentsArr = wordsArr[selectedLevel!]
+            selectedWord = 0
+            
+            
+            if DBManager.getSavedLevel() < selectedLevel! {
+                DBManager.saveLevel(level: selectedLevel!)
+                DBManager.saveWord(word: selectedWord!)
+            }
+        }// new word
+        else if DBManager.getSavedLevel() == selectedLevel, DBManager.getSavedWord() < selectedWord! {
             DBManager.saveWord(word: selectedWord!)
             DBManager.saveScore(score: self.getTotalScore())
         }
     }
     
-    func clearAndSave() {
+    func clearUI() {
         
         collectionView.reloadData()
         
@@ -245,17 +258,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, GADRewardBas
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
-        if selectedWord! == currentsArr.count {
-            selectedLevel = selectedLevel!+1
-            currentsArr = wordsArr[selectedLevel!]
-            selectedWord = 0
-            DBManager.saveWord(word: selectedWord!)
-            
-            if DBManager.getSavedLevel() < selectedLevel! {
-                DBManager.saveLevel(level: selectedLevel!)
-            }
-        }
-        
         let str:String = currentsArr[selectedWord!] as String
         if wordAsArray.count == 0
         {

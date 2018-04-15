@@ -1,19 +1,29 @@
 PODS:
   - Google-Mobile-Ads-SDK (7.25.0)
+  - LTMorphingLabel (0.5.6)
   - TransitionAnimation (4.0.0):
     - TransitionTreasury (~> 4.0)
   - TransitionTreasury (4.0.0)
 
 DEPENDENCIES:
   - Google-Mobile-Ads-SDK
+  - LTMorphingLabel
   - TransitionAnimation (~> 4.0.0)
   - TransitionTreasury (~> 4.0.0)
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Google-Mobile-Ads-SDK
+    - LTMorphingLabel
+    - TransitionAnimation
+    - TransitionTreasury
+
 SPEC CHECKSUMS:
   Google-Mobile-Ads-SDK: 113804f266381a30f982ad3c18063d4e0155414f
+  LTMorphingLabel: bdb51d4682e9822da89da6f567bd8aa456fd6650
   TransitionAnimation: c397b9ca41ab593b35b1e8f8673df17bae0db20a
   TransitionTreasury: dcf3fe6e5c740525d9e7d4544af45e6fbfd71c88
 
-PODFILE CHECKSUM: f5cf9c0461dddfeaae686ae12f797e322357fa49
+PODFILE CHECKSUM: 9373ded6d4938e198f0cd3394965a3f3fc1995b6
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.5.0

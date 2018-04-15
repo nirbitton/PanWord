@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'F79A66AB1157170866656D4428B65FB6'
-               BlueprintName = 'TransitionTreasury'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'TransitionTreasury.framework'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "FA7D3A5E4F3794E88243AE966D1EBF31"
+               BlueprintName = "TransitionTreasury"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "TransitionTreasury.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
