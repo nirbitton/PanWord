@@ -168,7 +168,13 @@ class ViewController: UIViewController, UICollectionViewDataSource, GADRewardBas
         
         // new level
         if selectedWord! == currentsArr.count {
-            selectedLevel = selectedLevel!+1
+            if selectedLevel!+1 < wordsArr.count {
+                selectedLevel = selectedLevel!+1
+            }
+            else {
+                selectedLevel = 0
+            }
+            
             currentsArr = wordsArr[selectedLevel!]
             selectedWord = 0
             
