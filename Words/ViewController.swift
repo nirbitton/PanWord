@@ -147,6 +147,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, GADRewardBas
             
             delay(0.5) {
                 self.nextPage()
+                self.saveData()
             }
             
             delay(0.9) {
@@ -156,8 +157,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, GADRewardBas
     }
     
     func nextPage() {
-        self.saveData()
-        
         let successVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SuccessVC") as! SuccessVC
         successVC.levelSelectedData = self.levelSelectedData[self.selectedLevel!]
         successVC.levelScore = self.getTotalScore()

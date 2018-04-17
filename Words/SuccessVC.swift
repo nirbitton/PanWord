@@ -9,22 +9,23 @@
 import UIKit
 import TransitionTreasury
 import TransitionAnimation
+import LTMorphingLabel
 
-class SuccessVC: UIViewController, NavgationTransitionable {
+class SuccessVC: UIViewController, NavgationTransitionable, LTMorphingLabelDelegate {
     
     var tr_pushTransition: TRNavgationTransitionDelegate?
 
     @IBOutlet weak var firstWord: UILabel!
     @IBOutlet weak var secondWord: UILabel!
     @IBOutlet weak var emoji: UILabel!
-    @IBOutlet weak var scoreLbl: UILabel!
+    @IBOutlet weak var scoreLbl: LTMorphingLabel!
     
     var levelSelectedData:LevelSelectData?
     var levelScore:Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        scoreLbl.text = String(DBManager.getScore())
         // Do any additional setup after loading the view.
     }
     
@@ -32,7 +33,13 @@ class SuccessVC: UIViewController, NavgationTransitionable {
         firstWord.text = levelSelectedData?.levelName
         secondWord.text = getSecondWordByScore()
         emoji.text = levelSelectedData?.icon
-        scoreLbl.text = String(DBManager.getScore())
+        
+        delay(0.4) {
+            self.scoreLbl.morphingEffect = LTMorphingEffect(rawValue: self.levelScore)!
+            let newScore = DBManager.getScore()
+            self.scoreLbl.text = String(newScore)
+        }
+        
     }
     
     func getSecondWordByScore() -> String {
@@ -51,7 +58,7 @@ class SuccessVC: UIViewController, NavgationTransitionable {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        delay(0.8) {
+        delay(0.98) {
             _ = self.navigationController?.tr_popViewController()
         }
     }
@@ -72,4 +79,20 @@ class SuccessVC: UIViewController, NavgationTransitionable {
     }
     */
 
+}
+
+extension UIViewController {
+    
+    func morphingDidStart(_ label: LTMorphingLabel) {
+        
+    }
+    
+    func morphingDidComplete(_ label: LTMorphingLabel) {
+        
+    }
+    
+    func morphingOnProgress(_ label: LTMorphingLabel, progress: Float) {
+        
+    }
+    
 }
